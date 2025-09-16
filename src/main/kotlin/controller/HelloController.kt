@@ -14,7 +14,7 @@ import java.util.*
 class HelloController(
     @param:Value("\${app.message:Hello World}")
     private val message: String,
-    private val messageSource: MessageSource //injection of the messageSource
+    private val messageSource: MessageSource
 ) {
     /**
      * If the user indicates ?lang=es|es|fr it will use messages*.properties

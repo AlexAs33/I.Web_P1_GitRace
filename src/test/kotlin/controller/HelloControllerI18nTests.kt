@@ -35,7 +35,7 @@ class HelloControllerI18nTests {
         val view = controller.welcome(model, "Ana", "es")
 
         assertThat(view).isEqualTo("welcome")
-        assertThat(model.getAttribute("message")).isEqualTo("Hola, Ana!")
+        assertThat(model.getAttribute("message")).isEqualTo("¡Hola, Ana!")
         assertThat(model.getAttribute("name")).isEqualTo("Ana")
     }
 

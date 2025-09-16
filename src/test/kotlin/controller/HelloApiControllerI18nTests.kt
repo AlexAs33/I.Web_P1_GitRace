@@ -30,7 +30,7 @@ class HelloApiControllerI18nTests {
     fun `should return greeting in Spanish`() {
         val response = controller.helloApi("Ana", "es")
 
-        assertThat(response["message"]).isEqualTo("Hola, Ana!")
+        assertThat(response["message"]).isEqualTo("¡Hola, Ana!")
         assertThat(response).containsKey("timestamp")
     }
 
