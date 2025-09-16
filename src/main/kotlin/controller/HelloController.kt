@@ -26,12 +26,16 @@ class HelloController(
         @RequestParam(defaultValue = "") name: String,
         @RequestParam(defaultValue = "") lang: String?
     ): String {
-        val greeting = if (!lang.isNullOrBlank() && (lang == "en" || lang == "es" || lang == "fr")){
-            val effectiveName = if (name.isNotBlank()) name else "World"
-            val locale = Locale.forLanguageTag(lang)
-            messageSource.getMessage("greeting", arrayOf(effectiveName),locale)
+        val greeting = try{
+            if (!lang.isNullOrBlank() && (lang == "en" || lang == "es" || lang == "fr")){
+                val effectiveName = if (name.isNotBlank()) name else "World"
+                val locale = Locale.forLanguageTag(lang)
+                messageSource.getMessage("greeting", arrayOf(effectiveName),locale)
 
-        } else {
+            } else {
+                if (name.isNotBlank()) "Hello, $name!" else message
+            }
+        } catch (e: Exception){
             if (name.isNotBlank()) "Hello, $name!" else message
         }
         model.addAttribute("message", greeting)
@@ -51,14 +55,18 @@ class HelloApiController (private val messageSource: MessageSource) {
         @RequestParam(defaultValue = "World") name: String,
         @RequestParam(required = false)lang: String?
     ): Map<String, String> {
-        val greeting = if (!lang.isNullOrBlank() && (lang == "en" || lang == "es")){
-            val locale = Locale.forLanguageTag(lang)
-            messageSource.getMessage("greeting", arrayOf(name), locale)
-        } else {
+        val greeting = try {
+            if (!lang.isNullOrBlank() && (lang == "en" || lang == "es" || lang == "fr")){
+                val locale = Locale.forLanguageTag(lang)
+                messageSource.getMessage("greeting", arrayOf(name), locale)
+            } else {
+                "Hello, $name!"
+            }
+        } catch (e: Exception){
             "Hello, $name!"
         }
         return mapOf(
-            "message" to "Hello, $name!",
+            "message" to greeting,
             "timestamp" to java.time.Instant.now().toString()
         )
     }

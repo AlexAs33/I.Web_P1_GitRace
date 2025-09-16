@@ -16,6 +16,11 @@
 4. **Adapted HellControllerUnitTests:**
     - Updated the unit tests to provide a messageSource when creating both controllers.
     - Added null as default for the lang, to keep the test with their original behaviour.
+5. **Created HelloControllerI18nTests and HelloApiControllerI18nTests:**
+    - Implemented tests to verify that the default language is english and if we specify the language that we want, the 
+    web translate the message to the language required.
+    - Implemented test to verify that if the user puts an unsupported language, the message appears with the default
+    language, and it doesn't produce any error.
 
 ## Technical Decisions
 1. **Internationalization (i18n):**
@@ -30,8 +35,9 @@
     configuration.
 
 ## Learning Outcomes
-- Learned how to configure internationalization in SpringBoot using Kotlin.
-- Understood how @Bean works in order to register a reusable object in the SpringBoot context application.
+1. Learned how to configure internationalization in SpringBoot using Kotlin.
+2. Understood how @Bean works in order to register a reusable object in the SpringBoot context application.
+3. Learned how to design tests in order to cover all possible cases.
 
 ## AI Disclosure
 ### AI Tools Used
@@ -44,10 +50,13 @@
     - AI provided guidance on the use of setFallBackToSystemLocale(false).
     - AI provided explanation of how setFallBackToSystemLocale(false) works.
     - AI proposed the core code to implement in the HelloController the lang parameter.
+    - AI automatized the generation of tests to cover the new functionalities.
 2. **Percentage of AI-assisted vs. original work:**
+    - 40% AI-assisted vs. 60% original work and self-learning.
 3. **Any modifications made to AI-generated code:**
     - The code of the HelloController that AI gave me was modified to keep the structure of the code that was given 
     to us.
+   - Completed missing parts of tests to cover unsupported languages and adapted them to actual project setup.
 
 ### Original Work
 1. **Work done without AI assistance:**
@@ -58,6 +67,7 @@
     - Manually added comments in order to explain how the code works and its characteristics.
     - Manually modified the HelloApiController taking the example o Hello Controller.
     - Manually modified HelloControllerUnitTests in order to add the language parameter in the controllers constructors.
+    - Manually modified missing parts of tests to cover unsupported languages and adapted them to actual project setup.
 2. **My understanding and learning process:**
     - Learned how the original web code works and search for information about multi-language support in SpringBoot.
     - Learned how the properties files works and learn what a @Bean was.
