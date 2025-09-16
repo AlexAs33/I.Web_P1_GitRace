@@ -26,7 +26,7 @@ class MessageConfig {
     @Bean
     fun messageSource(): MessageSource {
         val messageSource = ResourceBundleMessageSource()
-        messageSource.setBasename("classpath:messages")
+        messageSource.setBasename("messages")
         messageSource.setDefaultEncoding("UTF-8")
         messageSource.setFallbackToSystemLocale(false)
         return messageSource

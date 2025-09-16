@@ -10,6 +10,12 @@
     - Defined a messageSource bean that loads messages*.properties files.
     - Used UTF-8 encoding to support accents and special characters.
     - Used setFallbackToSystemLocale(false) in order to avoid using language server's locale.
+3. **Updated HelloController:**
+    - Modified both controllers to accept an optional lang parameter.
+    - If lang is not provided, the original behaviour is preserved.
+4. **Adapted HellControllerUnitTests:**
+    - Updated the unit tests to provide a messageSource when creating both controllers.
+    - Added null as default for the lang, to keep the test with their original behaviour.
 
 ## Technical Decisions
 1. **Internationalization (i18n):**
@@ -37,8 +43,11 @@
       application.properties.
     - AI provided guidance on the use of setFallBackToSystemLocale(false).
     - AI provided explanation of how setFallBackToSystemLocale(false) works.
-- [Percentage of AI-assisted vs. original work]
-- [Any modifications made to AI-generated code]
+    - AI proposed the core code to implement in the HelloController the lang parameter.
+2. **Percentage of AI-assisted vs. original work:**
+3. **Any modifications made to AI-generated code:**
+    - The code of the HelloController that AI gave me was modified to keep the structure of the code that was given 
+    to us.
 
 ### Original Work
 1. **Work done without AI assistance:**
@@ -47,5 +56,11 @@
     - Manually created the MessageConfig.kt file inside the correct package.
     - Used IntelliJ IDEA autocompletion to complete most of the MessageConfig.kt
     - Manually added comments in order to explain how the code works and its characteristics.
+    - Manually modified the HelloApiController taking the example o Hello Controller.
+    - Manually modified HelloControllerUnitTests in order to add the language parameter in the controllers constructors.
 2. **My understanding and learning process:**
+    - Learned how the original web code works and search for information about multi-language support in SpringBoot.
+    - Learned how the properties files works and learn what a @Bean was.
+    - Learned to extend controllers and implement new functionality without breaking existing expectations.
+    - Learned to modify existing tests without breaking existing expectations.
     
