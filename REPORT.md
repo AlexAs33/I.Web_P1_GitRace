@@ -1,23 +1,51 @@
 # Lab 1 Git Race -- Project Report
 
 ## Description of Changes
-[Detailed description of all changes made]
+1. **Added messages properties files**
+   - Created messages.properties, messages_es.properties and messages_fr.properties.
+   - Each file contains the translation for the default message 'Hello, ...!'
+   - Default language is English, with Spanish and French as supported languages.
+2. **Added message source configuration**
+    - Created the config package and inside of it the MessageConfig.kt.
+    - Defined a messageSource bean that loads messages*.properties files.
+    - Used UTF-8 encoding to support accents and special characters.
+    - Used setFallbackToSystemLocale(false) in order to avoid using language server's locale.
 
 ## Technical Decisions
-[Explanation of technical choices made]
+1. **Internationalization (i18n):**
+    I decided to create a messageSource bean instead of programming directly on application.properties, due to the fact 
+    that this option provides more flexibility, and in a future you can extend the configuration with more facility if 
+    you want, like different basename or integer with another messageSource.
+2. **Encoding:**
+    The encoding was set in UTF-8 to provide support for special characters and accents.
+3. **System locale fallback:**
+    Although setFallbackToSystemLocale(false) is deprecated in newer Spring versions, the alternative 
+    (isFallbackToSystemLocale) is protected and not accessible in Kotlin. This option prevents using language server 
+    configuration.
 
 ## Learning Outcomes
-[What you learned from this assignment]
+- Learned how to configure internationalization in SpringBoot using Kotlin.
+- Understood how @Bean works in order to register a reusable object in the SpringBoot context application.
 
 ## AI Disclosure
 ### AI Tools Used
-- [List specific AI tools used]
+- ChatGPT (OpenAI GPT-5)
 
 ### AI-Assisted Work
-- [Describe what was generated with AI assistance]
+1. **What was generated with AI assistance:**
+    - AI suggested the idea of create a MessageConfig.kt instead of handle messages configuration in the
+      application.properties.
+    - AI provided guidance on the use of setFallBackToSystemLocale(false).
+    - AI provided explanation of how setFallBackToSystemLocale(false) works.
 - [Percentage of AI-assisted vs. original work]
 - [Any modifications made to AI-generated code]
 
 ### Original Work
-- [Describe work done without AI assistance]
-- [Your understanding and learning process]
+1. **Work done without AI assistance:**
+    - Search for the message.properties method and how to implement it.
+    - Manually created messages.properties, messages_es.properties, messages_fr.properties.
+    - Manually created the MessageConfig.kt file inside the correct package.
+    - Used IntelliJ IDEA autocompletion to complete most of the MessageConfig.kt
+    - Manually added comments in order to explain how the code works and its characteristics.
+2. **My understanding and learning process:**
+    
