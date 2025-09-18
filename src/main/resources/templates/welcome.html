@@ -32,6 +32,7 @@
                     <div class="card-body text-center p-5">
                         <img class="d-block mx-auto mb-4 main-logo" src="/assets/logo.svg" alt="Universidad Zaragoza Logo">
                         <h1 class="display-4 fw-bold text-primary mb-4">Welcome to Modern Web App</h1>
+                        <h2 id="localGreeting" class="mb-3 text-success"></h2>  <!--Display Greeting in web-->
                         <p class="lead mb-4" th:text="${message}">Hello student.</p>
                         
                         <!-- HTTP Debug Section -->
@@ -158,6 +159,30 @@
                 console.log('LiveReload not available');
             };
             document.head.appendChild(script);
+        })();
+    </script>
+
+    <!--
+        Saludo a cliente dependiendo de la hora
+        5 - 14 == Good morning
+        14 - 21 == Good afternoon
+        20 - 5 == Good evening
+    -->
+    <script>
+        (function() {
+            const hour = new Date().getHours();
+            let greeting;
+            if (hour >= 5 && hour < 14) {
+            greeting = "Good morning";
+            } else if (hour >= 14 && hour < 21) {
+            greeting = "Good afternoon";
+            } else {
+            greeting = "Good evening";
+            }
+            const name = /* opcional: usar nombre del input webName si está relleno */
+            document.getElementById('webName')?.value?.trim();
+            const fullGreeting = name ? `${greeting}, ${name}!` : greeting;
+            document.getElementById('localGreeting').textContent = fullGreeting;
         })();
     </script>
 </body>
