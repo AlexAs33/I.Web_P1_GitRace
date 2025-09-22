@@ -27,6 +27,7 @@ dependencies {
     implementation(libs.bootstrap)
     implementation(libs.jackson.module.kotlin)
     testImplementation(libs.spring.boot.starter.test)
+    implementation("com.bucket4j:bucket4j-core:8.6.0")
 }
 
 tasks.withType<Test> {
