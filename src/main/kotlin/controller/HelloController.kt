@@ -8,17 +8,24 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
+//imports enhanced loggs
+import org.slf4j.LoggerFactory
+import net.logstash.logback.argument.StructuredArguments.kv
+
 @Controller
 class HelloController(
     @param:Value("\${app.message:Hello World}") 
     private val message: String
 ) {
     
+    private val logger = LoggerFactory.getLogger(javaClass)
+
     @GetMapping("/")
     fun welcome(
         model: Model,
         @RequestParam(defaultValue = "") name: String
     ): String {
+        logger.info("Serving welcome page {}", kv("name", name))    //log estructurado
         val greeting = if (name.isNotBlank()) "Hello, $name!" else message
         model.addAttribute("message", greeting)
         model.addAttribute("name", name)
@@ -29,6 +36,8 @@ class HelloController(
 @RestController
 class HelloApiController {
     
+    private val logger = LoggerFactory.getLogger(javaClass)
+
     @GetMapping("/api/hello", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun helloApi(@RequestParam(defaultValue = "World") name: String): Map<String, String> {
         return mapOf(
